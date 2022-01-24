@@ -14,7 +14,7 @@ import csv
 import sys
 
 # Set to True to use privatized age data (i.e. noise added to anonymize data)
-PRIVATIZED = False
+PRIVATIZED = True
 
 # Define data sources
 NAME_DATA = 'names.csv'

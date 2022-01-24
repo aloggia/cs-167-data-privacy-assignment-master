@@ -76,8 +76,8 @@ def anonymize_age_data(salaries):
         ages = ages[1:]
         return [int(item[1]) for item in ages]
 
-    def laplace_mech_vec(data, sensitivity, epsilon):
-        return data + np.random.laplace(loc=0, scale=sensitivity/epsilon)
+    def laplace_mech_vec(vec, sensitivity, epsilon):
+        return [data + np.random.laplace(loc=0, scale=sensitivity/epsilon) for data in vec]
 
     def insert(salaries, priv_ages):
         j = 0
@@ -90,9 +90,7 @@ def anonymize_age_data(salaries):
 
     # Your algorithm here.
     ages = extract(salaries)
-    priv_ages = []
-    for age in ages:
-        priv_ages.append(laplace_mech_vec(age, 1, .05))
+    priv_ages = laplace_mech_vec(ages, 1, .5)
     salaries = insert(salaries, priv_ages)
 
 
